@@ -1,5 +1,33 @@
 {% extends 'blog/base.html' %}
 
+
+
 {% block content %}
-    <h1> About Page </h1>
+
+<h1>This is about page</h1>
+
+<button id='mybtn'>Send AJAX POST REQUEST</button>
+
+<!-- Load JQUERY -->
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous">
+</script>
+
+<script>
+    // Code for AJAX GET REQUEST 
+
+    // JQUERY LOADED. 
+    console.log($('#mybtn').text());
+    document.cookie = "name=babu";
+    
+    // DO AJAX REQUEST IN INDEX page 
+    $.get('/about', document.cookie, function(data, status){
+        console.log("posted");
+    });
+    //$.post()
+
+</script>
+
 {% endblock content %}

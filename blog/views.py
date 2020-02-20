@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post
+from django.shortcuts import render, get_object_or_404, HttpResponse
+from .models import Post, StoreCoke as Store
 from django.contrib.auth.models import User
 from django.views.generic import ( 
     ListView, 
@@ -23,10 +23,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 #         'content': 'Second Post Content',
 #         'date_posted': 'August 27 2019'
 #     },
-# ]
+# ]  
+#   data = request.POST.get("name")
+#   print(data)
 
 # Create your views here.
 def home(request):
+    
     context = {
         'posts_context': Post.objects.all()
     }
@@ -90,4 +93,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 def about(request):
+    model = Store
+    data = request.POST.get("name")
+    print(data)
+    print(" print this ")
     return render(request, 'blog/about.html',{'title_presented':'about'})
